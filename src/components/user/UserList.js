@@ -3,32 +3,35 @@ import React, {useEffect, useState} from 'react'
 import './UserList.css'
 import userService from "../../services/UserService";
 import {useNavigate} from "react-router-dom";
-import PopupModal from "./PopupModal";
-
-// Pagination 은 아래 코드를 보자구
-// import {Pagination} from "react-bootstrap";
-// https://github.com/spknetwork/ecency-boilerplate/blob/master/src/common/components/pagination/index.tsx
-
+import PopupModal from "../common/popup/PopupModal";
+import MyPagination from "../common/pagnation/MyPagination";
 
 const ListUser = () => {
 
     const [users, setUsers] = useState([])
     const [userId, setUserId] = useState(-1);
+    const [page, setPage] = useState(1);
     const [showModal, setShowModal] = useState(false);
+    const pageSize = 10;
 
     useEffect(() => {
-        let page = 0
-        let size = 10
-        console.log("useEffect........")
-        userService.getUsers(page, size)
-            .then((res) => {
-                setUsers(res.data)
-            });
-    }, []);
+        const fetchUsers = () => {
+            console.log("fetchUsers........ page: " + page + " pageSize: " + pageSize);
+            userService.getUsers(page, pageSize)
+                .then((res) => {
+                    setUsers(res.data)
+                });
+        }
+        fetchUsers();
+    }, [page]);
+
+    // const dataLength = users.length > 0 ? users.length * 2 : users.length;
+    const dataLength = 30;
 
 
     const navigate = useNavigate();
     const navigateToAddPage = (page) => {
+        console.log("navigateToAddPage page: " + page)
         navigate('/add-user');
     };
     const navigateToEditPage = (id) => {
@@ -47,8 +50,9 @@ const ListUser = () => {
         if (confirmed) {
             console.log("to delete userId: " + userId);
             userService.deleteUser(userId)
-                .then(response => {
+                .then(res => {
                     setUsers(users.filter(user => user.id !== userId));
+                    console.log(res._status.NAME())
                 })
                 .catch(error => {
                     console.log('error', error);  // Failure response handling
@@ -102,6 +106,19 @@ const ListUser = () => {
                     }
                     </tbody>
                 </table>
+                <MyPagination
+                    currentPage={page}
+                    pageSize={pageSize}
+                    maxItems={2}
+                    dataLength={dataLength}
+                    onPageChange={
+                        (page) => {
+                            setPage(page)
+                            // console.log("onPageChange num ===>: " + page)
+                            // fetchUsers()
+                        }
+                    }
+                    className="my-3"/>
                 {showModal && <PopupModal handleConfirm={handleConfirm}/>}
             </div>
         </div>
