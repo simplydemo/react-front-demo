@@ -17,7 +17,7 @@ const ListUser = () => {
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
-        let page = 1
+        let page = 0
         let size = 10
         console.log("useEffect........")
         userService.getUsers(page, size)

@@ -9,11 +9,19 @@ git clone https://github.com/simplydemo/react-front-demo.git
 cd react-front-demo
 ```
 
+## Install Dependencies
+```
+npm install
+```
+
 ## Available Scripts
 
 ```
-# 
-NODE_ENV=development && npm start
+#  run in development
+npm run startdev
+
+# run in production
+npm run startprd
 
 # 
 npm test
@@ -23,6 +31,9 @@ npm run build
 
 # 
 npm run eject
+
+# clear cache
+npm cache clean --force
 ```
 
 ## Project initialize

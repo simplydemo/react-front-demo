@@ -39,9 +39,10 @@ const EditUser = () => {
         navigate(-1);
     };
 
-    const addUser = (event) => {
+    const saveUser = (event) => {
         event.preventDefault();
         let data = {
+            id: id,
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
@@ -49,8 +50,9 @@ const EditUser = () => {
             role: user.role,
             usercode: user.usercode
         }
-        console.log('user => ' + JSON.stringify(data));
-        userService.createUser(data)
+        // console.log('id => ' + id);
+        // console.log('user => ' + JSON.stringify(data));
+        userService.updateUser(data, id)
             .then(response => {
                 navigateToUserList(); // Successful response handling
             })
@@ -104,7 +106,7 @@ const EditUser = () => {
                                            value={user.usercode}
                                            onChange={(e) => handleChangeValue(e, user, setUser)}/>
                                 </div>
-                                <button className="btn btn-success" onClick={addUser}>Save</button>
+                                <button className="btn btn-success" onClick={saveUser}>Save</button>
                                 &nbsp;
                                 <button className="btn btn-danger" onClick={navigateToBack}>Cancel</button>
                             </form>
