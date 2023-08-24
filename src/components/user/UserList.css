@@ -1,0 +1,23 @@
+.grid {
+    margin: 10px 10px 10px 10px;
+    width: 960px;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.table {
+    text-align: center;
+}
+
+.tbl_center {
+    text-align: center;
+}
+
+.w-200 {
+    width: 200px !important;
+}
+
+.w-300 {
+    width: 300px !important;
+}
