@@ -36,6 +36,16 @@ npm run eject
 npm cache clean --force
 ```
 
+## Build Docker Image
+```
+docker build -t symplesims/react-front-demo:local-1.0 -f ./cicd/docker/Dockerfile .
+```
+
+## Docker Run
+```
+docker-compose -f ./cicd/docker/docker-compose.yml up -d
+```
+
 ## Project initialize
 
 - [x] create-react-app

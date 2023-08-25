@@ -30,7 +30,7 @@ const EditUser = () => {
     const navigate = useNavigate();
     const navigateToUserList = (page) => {
         console.log("navigateToUserList")
-        navigate('/users');
+        navigate(-1);
     };
 
     const navigateToBack = (event) => {

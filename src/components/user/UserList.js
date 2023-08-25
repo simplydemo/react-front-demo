@@ -26,7 +26,7 @@ const ListUser = () => {
     }, [page]);
 
     // const dataLength = users.length > 0 ? users.length * 2 : users.length;
-    const dataLength = 30;
+    const dataLength = 60;
 
 
     const navigate = useNavigate();
@@ -109,7 +109,7 @@ const ListUser = () => {
                 <MyPagination
                     currentPage={page}
                     pageSize={pageSize}
-                    maxItems={2}
+                    maxItems={3}
                     dataLength={dataLength}
                     onPageChange={
                         (page) => {
